@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill.whitehouse.mapper.ReservationMapper">
+	<insert id="insertReservation">
+		<selectKey resultType="int" keyProperty="rNum" order="BEFORE">
+			select reservation_seq.nextval from dual
+		</selectKey>
+		insert into reservation values(#{rNum}, #{rCheckIn}, #{rCheckOut}, 
+		#{rHeadCount}, #{rPrice}, #{rRoomName}, #{rId}, #{rStatue},
+		#{rName}, #{rPhone}, #{rEmail}, #{rQuestions})
+	</insert>
+	
+	<update id="updateReservation">
+		update reservation set (#{r_check_in}, #{r_check_out}, #{r_headcount}, 
+		#{r_price}, #{r_room_name}, #{r_id}, #{r_statue}, #{r_name},
+		#{r_phone}, #{r_email}, #{r_start}, #{r_arrive}, #{r_questions})
+		where r_bum=#{r_bum}
+	</update>
+	
+	<delete id="deleteReservation">
+		delete from reservation where r_num = #{r_num}
+	</delete>
+	
+	<select id="selectReserv" resultType="Reservation">
+		select * from reservation where r_room_name=#{rRoomName} and r_check_in=#{rCheckIn} and r_name=#{rName} and r_phone=#{rPhone}
+	</select>
+	
+	<select id="selectRev" resultType="Reservation">
+		select * from reservation where r_num=#{rNum}
+	</select>
+	
+	<select id="selectReservationList" resultType="Reservation">
+		select * from reservation order by r_num desc
+	</select>
+	
+	<select id="selectRvRoomChoice" resultType="Reservation">
+		select * from reservation where r_room_name=#{r_room_name} and r_check_in=#{r_check_in}
+	</select>
+	
+	<select id="oneMonth" resultType="Reservation">
+		SELECT rCheckIn,rRoomName,rPrice
+		FROM(
+		    SELECT X.om AS rCheckIn,
+		        p_name AS rRoomName,
+		        case when x.month_day='성수기주말' then p_price4
+		            when x.month_day='성수기평일' then p_price2
+		            when x.month_day='비성수기주말' then p_price3
+		            when x.month_day='비성수기평일' then p_price
+		        else 'unknown'
+		        end AS rPrice
+		    FROM 
+		        (select to_char(sysdate+(LEVEL-1),'yyyy-mm-dd') AS om,
+		            case when to_char(sysdate+(level-1),'MM') in('07','08','09','12','01') then 
+		                    case when to_char(sysdate+(level-1),'D') in('1','7') then '성수기주말' else '성수기평일'
+		                end
+		                when to_char(sysdate+(level-1),'MM') in('02','03','04','05','06','10','11') then 
+		                    case when to_char(sysdate+(level-1),'D') in('1','7') then '비성수기주말' else '비성수기평일'
+		                end
+		            end as month_day
+		        from dual
+		        <![CDATA[connect by level<=sysdate+31-sysdate+1]]>
+		        )X,product
+		    )Y LEFT OUTER JOIN reservation Z ON Y.rCheckIn BETWEEN Z.r_check_in AND (Z.r_check_out-1) AND Y.rRoomName = Z.r_Room_Name
+		WHERE Z.r_check_in is null
+		ORDER BY rCheckIn,rRoomName
+	</select>	
+</mapper>

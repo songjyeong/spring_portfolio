@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill.whitehouse.mapper.QnaMapper">
+	<insert id="insertQna">
+		<selectKey resultType="int" keyProperty="qNum" order="BEFORE">
+			select qnano_seq.nextval from dual
+		</selectKey>
+		<if test="qStatus!=2">
+			insert into qna values(#{qNum}, #{qId}, #{qTitle}, #{qContent}, sysdate,1)
+		</if>
+		<if test="qStatus==2">
+			insert into qna values(#{qNum}, #{qId}, #{qTitle}, #{qContent}, sysdate,2)
+		</if>
+ 	</insert> 
+	
+	<update id="updateQna">
+		update qna
+		<set>
+			<if test="qTitle!= null and qTitle!=''">
+				q_title=#{qTitle},
+			</if>
+			<if test="qContent!= null and qContent!=''">
+				q_content=#{qContent}
+			</if>
+		</set>
+		where q_num=#{qNum}
+	</update>
+	
+	<delete id="deleteQna">
+		delete from qna where q_num = #{qNum}
+	</delete>
+	
+	<select id="selectQnaCount" resultType="int">
+		select count(*) from qna
+	</select>
+	
+	<select id="selectQnaSearchCount" resultType="int">
+		select count(*) from qna where q_title like '%'||#{qTitle}||'%'
+	</select>
+	
+	<select id="selectQna" resultType="Qna">
+		select*from qna where q_num=#{qNum}
+	</select>
+	
+	<select id="selectQnaList" resultType="Qna">
+		select * from (select rownum rn, qnaboard.*from(select*from qna order by q_num desc)qnaboard) where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="selectQnaSearchList" resultType="Qna">
+		select * from (select rownum rn, qnaboard.*from(select*from qna where q_title like '%'||#{qTitle}||'%' order by q_num desc)qnaboard)where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<insert id="insertQnaImage">
+		<selectKey resultType="int" keyProperty="ImgId" order="BEFORE">
+			select image_seq.nextval from dual
+		</selectKey>
+		insert into image values(#{ImgId}, #{ImgMain})
+	</insert>
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill.whitehouse.mapper.AdminMapper">
+	<insert id="insertReserv">
+		insert into reservation values( #{rNum}, 
+										#{rCheckIn}, 
+										#{rCheckOut}, 
+										#{rHeadCount}, 
+										#{rPrice}, 
+										#{rRoomName}, 
+										#{rId},
+										#{rStatue},
+										#{rName},
+										#{rPhone},
+										#{rEmail},
+										#{rStart},
+										#{rArrive},
+										#{rQuestions}
+										)
+	</insert>
+	
+	<select id="selectReservDayList" resultType="Reservation">
+		select * from reservation where r_check_in = #{day} or r_check_out = #{day}
+<!-- 		select * from reservation where r_name= #{rName} -->
+	</select>
+	
+	<select id="selectReservList" resultType="Reservation">
+		select * from reservation
+	</select>
+	
+	<select id="memberList" resultType="Member">
+		select * from member order by name
+	</select>
+	
+	<select id="productList" resultType="Product">
+		select * from product order by p_num
+	</select>
+	
+	<select id="selectProductNum" resultType="Product">
+		select * from product where p_num=#{pNum}
+	</select>
+	
+	<update id="updateProductImage">
+		update product set p_image=#{pImage} where p_num=#{pNum}
+	</update>
+	
+</mapper>

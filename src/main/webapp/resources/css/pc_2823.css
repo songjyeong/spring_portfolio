@@ -1,0 +1,138 @@
+/*     18618 : 한줄 텍스트      */
+.text__18618__ p { 
+	display:block; margin:0; padding:0;
+	font-size:15px; font-weight:bold; color:#444444; letter-spacing:0; line-height:1.4em;
+}
+.text__18618__ p a {color:#444444; text-decoration:none;}
+
+/*     18619 : 한줄 텍스트      */
+.text__18619__ p { 
+	display:block; margin:0; padding:0;
+	font-size:18px; font-weight:bold; color:#444444; letter-spacing:0; line-height:1.4em;
+}
+.text__18619__ p a {color:#444444; text-decoration:none;}
+
+/*     18620 : 제목&내용 가로형      */
+.text_horizontal__18620__ .title__18620__ {margin:0 0 5px; padding:0; font-size:15px; font-weight:bold; color:#444444; letter-spacing:0;}
+.text_horizontal__18620__ .text__18620__ {margin:0; padding:0; font-size:15px; color:#444444; letter-spacing:0;}
+
+@media all and (min-width:768px){
+	.text_horizontal__18620__:after {content:''; display:block; clear:both;}
+	.text_horizontal__18620__ .title__18620__ {float:left; margin:0; width:80px;}
+	.text_horizontal__18620__ .text__18620__ {overflow:hidden;}
+}
+
+/*     18621 : 제목&내용 가로형      */
+.text_horizontal__18621__ .title__18621__ {margin:0 0 5px; padding:0; font-size:15px; font-weight:bold; color:#444444; letter-spacing:0;}
+.text_horizontal__18621__ .text__18621__ {margin:0; padding:0; font-size:15px; color:#444444; letter-spacing:0;}
+
+@media all and (min-width:768px){
+	.text_horizontal__18621__:after {content:''; display:block; clear:both;}
+	.text_horizontal__18621__ .title__18621__ {float:left; margin:0; width:80px;}
+	.text_horizontal__18621__ .text__18621__ {overflow:hidden;}
+}
+
+/*     18622 : 제목&내용 가로형      */
+.text_horizontal__18622__ .title__18622__ {margin:0 0 5px; padding:0; font-size:15px; font-weight:bold; color:#444444; letter-spacing:0;}
+.text_horizontal__18622__ .text__18622__ {margin:0; padding:0; font-size:15px; color:#444444; letter-spacing:0;}
+
+@media all and (min-width:768px){
+	.text_horizontal__18622__:after {content:''; display:block; clear:both;}
+	.text_horizontal__18622__ .title__18622__ {float:left; margin:0; width:80px;}
+	.text_horizontal__18622__ .text__18622__ {overflow:hidden;}
+}
+
+/*     18623 : 텍스트 + 아이콘 이미지      */
+@font-face {
+	font-family: 'icomoon_arrow';
+	src: url('../../../arampage/design/icomoon/icomoon_arrow/icomoon.eot');
+	src: url('../../../arampage/design/icomoon/icomoon_arrow/icomoond41d.eot?#iefix') format('embedded-opentype'),
+		url('../../../arampage/design/icomoon/icomoon_arrow/icomoon.woff') format('woff'),
+		url('../../../arampage/design/icomoon/icomoon_arrow/icomoon.ttf') format('truetype'),
+		url('../../../arampage/design/icomoon/icomoon_arrow/icomoon.svg#icomoon_slider') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.img__18623__:after {content:''; display:block; clear:both;}
+.img__18623__ * {box-sizing:border-box;}
+.img__18623__ .figure {display:block; float:left; margin-right:20px;}
+.img__18623__ .figure img {max-width:50px; vertical-align:top;}
+.img__18623__ .caption {display:block; overflow:hidden;}
+.img__18623__ .caption .title {display:block; margin:0 0 3px; padding:0; font-size:16px; font-weight:bold; color:#000000; line-height:1.3em; letter-spacing:-.03em;}
+.img__18623__ .caption .cont {display:block; font-size:13px; color:#444444; line-height:1.5em; letter-spacing:-.03em;}
+
+@media all and (min-width:1024px){
+	.img__18623__ .figure {margin-right:30px;}
+	.img__18623__ .figure img {max-width:100%;}
+	.img__18623__ .caption .title {margin:0 0 5px; font-size:18px;}
+	.img__18623__ .caption .cont {font-size:14px;}
+}
+
+/*     18624 : 텍스트 + 아이콘 이미지      */
+@font-face {
+	font-family: 'icomoon_arrow';
+	src: url('../../../arampage/design/icomoon/icomoon_arrow/icomoon.eot');
+	src: url('../../../arampage/design/icomoon/icomoon_arrow/icomoond41d.eot?#iefix') format('embedded-opentype'),
+		url('../../../arampage/design/icomoon/icomoon_arrow/icomoon.woff') format('woff'),
+		url('../../../arampage/design/icomoon/icomoon_arrow/icomoon.ttf') format('truetype'),
+		url('../../../arampage/design/icomoon/icomoon_arrow/icomoon.svg#icomoon_slider') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.img__18624__:after {content:''; display:block; clear:both;}
+.img__18624__ * {box-sizing:border-box;}
+.img__18624__ .figure {display:block; float:left; margin-right:20px;}
+.img__18624__ .figure img {max-width:50px; vertical-align:top;}
+.img__18624__ .caption {display:block; overflow:hidden;}
+.img__18624__ .caption .title {display:block; margin:0 0 3px; padding:0; font-size:16px; font-weight:bold; color:#000000; line-height:1.3em; letter-spacing:-.03em;}
+.img__18624__ .caption .cont {display:block; font-size:13px; color:#444444; line-height:1.6em; letter-spacing:-.03em;}
+
+@media all and (min-width:1024px){
+	.img__18624__ .figure {margin-right:30px;}
+	.img__18624__ .figure img {max-width:100%;}
+	.img__18624__ .caption .title {margin:0 0 5px; font-size:18px;}
+	.img__18624__ .caption .cont {font-size:14px;}
+}
+
+/*     18625 : 텍스트 + 아이콘 이미지      */
+@font-face {
+	font-family: 'icomoon_arrow';
+	src: url('../../../arampage/design/icomoon/icomoon_arrow/icomoon.eot');
+	src: url('../../../arampage/design/icomoon/icomoon_arrow/icomoond41d.eot?#iefix') format('embedded-opentype'),
+		url('../../../arampage/design/icomoon/icomoon_arrow/icomoon.woff') format('woff'),
+		url('../../../arampage/design/icomoon/icomoon_arrow/icomoon.ttf') format('truetype'),
+		url('../../../arampage/design/icomoon/icomoon_arrow/icomoon.svg#icomoon_slider') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.img__18625__:after {content:''; display:block; clear:both;}
+.img__18625__ * {box-sizing:border-box;}
+.img__18625__ .figure {display:block; float:left; margin-right:20px;}
+.img__18625__ .figure img {max-width:50px; vertical-align:top;}
+.img__18625__ .caption {display:block; overflow:hidden;}
+.img__18625__ .caption .title {display:block; margin:0 0 3px; padding:0; font-size:16px; font-weight:bold; color:#000000; line-height:1.3em; letter-spacing:-.03em;}
+.img__18625__ .caption .cont {display:block; font-size:13px; color:#444444; line-height:1.5em; letter-spacing:-.03em;}
+
+@media all and (min-width:1024px){
+	.img__18625__ .figure {margin-right:30px;}
+	.img__18625__ .figure img {max-width:100%;}
+	.img__18625__ .caption .title {margin:0 0 5px; font-size:18px;}
+	.img__18625__ .caption .cont {font-size:14px;}
+}
+
+/*     18626 : 구글 지도 (주소 직접 입력)      */
+.map__18626__ iframe {vertical-align:top;}
+.map__18626__ p {display:none; margin:0; padding:1em 0; font-size:13px;} 
+.map__18626__ .build_preview__18626__ {display:table; width:100%;}
+.map__18626__ .build_preview__18626__ .inner__18626__ {display:table-cell; height:500px; border:1px solid #ddd; background:#f8f8f8; text-align:center; vertical-align:middle;}
+.map__18626__ .build_preview__18626__ .inner__18626__ .subject__18626__ {display:block; font-size:16px; font-weight:bold;}
+.map__18626__ .build_preview__18626__ .inner__18626__ .exp_text__18626__ {display:block; margin-top:10px; font-weight:normal; font-size:13px; color:#777;}
+
+@media all and (max-width:767px){
+	.map__18626__ iframe {height:300px;}
+	.map__18626__ .build_preview__18626__ .inner__18626__ {height:300px;}
+}
+

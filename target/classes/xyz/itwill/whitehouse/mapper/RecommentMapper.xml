@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill.whitehouse.mapper.RecommentMapper">
+	<insert id="insertNewRecommnet">
+		<selectKey resultType="int" keyProperty="reNum" order="BEFORE">
+			select recomment_seq.nextval from dual
+		</selectKey>
+			insert into recomment values(#{reNum}, #{reId}, #{reContent}, sysdate, #{reVnum}, #{reNum}, 0,0,1 )
+	</insert>
+	
+	<insert id="insertRecomment">
+		<selectKey resultType="int" keyProperty="reNum" order="BEFORE">
+			select recomment_seq.nextval from dual
+		</selectKey>
+			insert into recomment values(#{reNum}, #{reId}, #{reContent}, sysdate, #{reVnum}, #{reGroup}, #{reDepth}+1, #{reStep}+1, 1)
+	</insert>
+	
+	<update id="updateNewStepup">
+		update recomment set re_step = re_step + 1 where re_vnum=#{reVnum}
+	</update>
+	
+	<update id="updateStepup">
+		update recomment set re_step = re_step + 1 where re_vnum=#{reVnum} and re_step > #{reStep} 
+	</update>
+
+	<update id="updateRecomment">
+		update recomment set re_content = #{reContent} where re_num = #{reNum}
+	</update>
+	
+	<update id="removeRecomment">
+		update recomment set re_status = 0 where re_num = #{reNum}
+	</update>
+	
+	<delete id="removeAllRecomment">
+		delete from recomment re_vnum = #{reVnum}	
+	</delete>
+	
+	<select id="selectRecomment" resultType="Recomment">
+		select re_vnum,re_group,re_depth,re_step from recomment where re_num = #{reNum}
+	</select>
+	
+	<select id="selectRecommentList" resultType="Recomment">
+		select * from recomment where re_vnum = #{reVnum} order by re_step asc
+	</select>
+</mapper>

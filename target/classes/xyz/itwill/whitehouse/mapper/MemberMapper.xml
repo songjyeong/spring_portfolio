@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill.whitehouse.mapper.MemberMapper">
+
+	<insert id="insertMember">
+		insert into member (id, password, phone, email, status, name) 
+		values(#{id}, #{password}, #{phone}, #{email}, 1, #{name})
+	</insert>
+
+	<update id="updateMember">
+		update member
+		<set>
+			<if test="password!=null and password!=''">
+				password=#{password},
+			</if>
+			<if test="name!=null and name!=''">
+				name=#{name},
+			</if>
+			<if test="email!=null and email!=''">
+				email=#{email},
+			</if>
+			<if test="status!=null and status!=1">
+				status=#{status}
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="deleteMember">
+		delete from member where id=#{id}
+	</delete>
+
+	<select id="selectMember" resultType="Member">
+		select * from member where id=#{id}
+	</select>
+
+	<select id="selectMemberList" resultType="Member">
+		select * from member order by id
+	</select>
+
+	<select id="searchMember" resultType="Member">
+		select * from member
+		<where>
+			<if test="id!=null and id!=''">
+			id=#{id} and
+			</if>
+			name=#{name} and phone=#{phone} and email=#{email}
+		</where> 
+	</select>
+	
+<!-- 	<select id="idChk" resultType="int"> -->
+<!-- 	SELECT COUNT(*) FROM MEMBER -->
+<!-- 	WHERE ID = #{id} -->
+<!-- 	</select>	 -->
+	
+<!-- 	<select id="selectreserv" resultType="Reservation"> -->
+<!-- 		SELECT * FROM RESERVATION WHERE R_ID = #{id} -->
+<!-- 		SELECT * FROM RESERVATION WHERE R_ID = 'aaa' -->
+<!-- 	</select> -->
+
+</mapper>

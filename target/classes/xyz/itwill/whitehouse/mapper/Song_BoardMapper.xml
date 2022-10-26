@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill.whitehouse.mapper.Song_BoardMapper">
+	
+	<!--검색기능 하려고 했던 것 -->
+	<!-- ''랑 b_title이 잘못 되어 수정 -->
+	<select id="songSelectBoardTitle" resultType="Board">
+		select * from (select rownum rn, bd.*from(select*from board where b_title like '%'||#{bTitle}||'%' order by b_num desc)bd)where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="selectBoardSearchCount" resultType="int">
+		select count(*) from board where b_title like '%'||#{bTitle}||'%' order by b_num desc
+	</select>
+	
+</mapper>

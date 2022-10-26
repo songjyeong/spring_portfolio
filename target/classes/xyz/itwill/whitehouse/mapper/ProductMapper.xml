@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill.whitehouse.mapper.ProductMapper">
+	
+	<insert id="insertProduct">
+		<selectKey resultType="int" keyProperty="pNum" order="BEFORE">
+			select product_seq.nextval from dual
+		</selectKey>
+		insert into product values(#{pNum},#{pName}, #{pImage},#{pMincount},#{pMaxcount}
+		,#{pPrice},#{pPrice2},#{pPrice3},#{pPrice4},#{pDetail1},#{pDetail2},#{pDetail3},#{pDetail4},#{pDetail5})
+	</insert>
+	<!-- (pNum, pName, pImage, pDetail, pMincount, pMaxcount, pPrice) -->
+	
+	<update id="updateProduct">
+		update product set p_name=#{pName}, p_image=#{pImage}, p_mincount=#{pMincount}, p_maxcount=#{pMaxcount}
+		, p_price=#{pPrice}, p_price2=#{pPrice2}, p_price3=#{pPrice3}, p_price4=#{pPrice4}
+		, p_detail1=#{pDetail1}, p_detail2=#{pDetail2}, p_detail3=#{pDetail3}, p_detail4=#{pDetail4}, p_detail5=#{pDetail5} where p_num=#{pNum}
+	</update>
+	
+	
+	<delete id="deleteProduct">
+		delete from product where p_num=#{pNum}
+	</delete>
+	
+	
+	<select id="selectProductCount" resultType="int">
+		select count(*) from product
+	</select>
+	
+	
+	<select id="selectProduct" resultType="Product">
+		select * from product where p_num=#{pNum}
+	</select>
+	
+	<select id="selectProductList" resultType="Product">
+		select * from product order by p_num
+	</select>
+</mapper>

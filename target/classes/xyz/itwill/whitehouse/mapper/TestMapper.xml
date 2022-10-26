@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill.whitehouse.mapper.TestMapper">
+	<select id="selectTest" resultType="Test">
+		select * from test where id=#{id} and name=#{name}
+	</select>
+	<select id="selectTestList" resultType="Test">
+		select * from test order by id
+	</select>
+	<select id="selectTestStatusList" resultType="Test">
+		select * from test where status= #{selectNum} order by id
+	</select>
+</mapper>

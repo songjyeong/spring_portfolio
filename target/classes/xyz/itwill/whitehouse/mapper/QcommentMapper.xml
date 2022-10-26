@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill.whitehouse.mapper.QcommentMapper">
+	<insert id="insertQcomment">
+		<selectKey resultType="int" keyProperty="cNum" order="BEFORE">
+		 	select qcomment_seq.nextval from dual
+		</selectKey> 
+		insert into qcomment values(#{cNum},#{cId}, #{cQnum}, #{cContent}, sysdate)
+	</insert>
+	
+	<update id="updateQcomment">
+		update qcomment set c_content=#{cContent} where c_num=#{cNum}
+	</update>
+	
+	<delete id ="deleteQcomment">
+		delete from qcomment where c_num = #{cNum}
+	</delete>
+	
+	<!-- qna게시글을 삭제할 때 관련 코멘트 삭제 -->
+	<delete id ="deleteQnacomment">
+		delete from qcomment where c_qnum=#{cQnum}
+	</delete>
+	
+	<!-- qcomment 페이징 처리 위해 필요 -->
+	<select id ="selectCountQcomment" resultType="int">
+		select count(*) from qcomment where c_qnum=#{cQnum} order by c_date desc
+	</select>
+	
+	<select id ="selectQcommentList" resultType="Qcomment">
+		select * from (select rownum rn, qnacomment.*from(select*from qcomment where c_qnum=#{cQnum} order by c_date desc)qnacomment)where rn between #{startRow} and #{endRow}
+	</select>	
+
+	
+	
+</mapper>
